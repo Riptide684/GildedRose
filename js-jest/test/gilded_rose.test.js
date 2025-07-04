@@ -88,13 +88,11 @@ describe("Normal Items", function() {
         new Item("Elixir of the Mongoose", 5, 7),
     ];
 
-    it("At the end of each day our system lowers both values for every item", function() {
+    it("At the end of each day our system lowers Quality for every item", function() {
         const gildedRose = new Shop(items);
-        const expectedSellIn = [9, 4];
         const expectedQuality = [19, 6];
         gildedRose.updateQuality();
         for (let i = 0; i < gildedRose.length; i++) {
-            expect(gildedRose[i].sellIn).toBe(expectedSellIn[i]);
             expect(gildedRose[i].quality).toBe(expectedQuality[i]);
         }
     });
@@ -134,6 +132,35 @@ describe("Negative Test", function() {
 
         for (let i = 0; i < gildedRose.length; i++) {
             expect(gildedRose[i].quality).toBe(expectedQuality[i]);
+        }
+    });
+});
+
+describe("Sell In Test", function () {
+    const items = [
+        new Item("+5 Dexterity Vest", 10, 20),
+        new Item("Aged Brie", 2, 0),
+        new Item("Elixir of the Mongoose", 5, 7),
+        new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+        new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+        new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+        new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+
+        // This Conjured item does not work properly yet
+        //new Item("Conjured Mana Cake", 3, 6),
+    ];
+
+    it("At the end of each day our system lowers Sell In for every item", function() {
+        const gildedRose = new Shop(items);
+        const expectedSellIn = [0, -8, -5, 0, -1, 5, 0, -5];
+
+        for (let day = 0; day < 10; day++) {
+            gildedRose.updateQuality();
+        }
+
+        for (let i = 0; i < gildedRose.length; i++) {
+            expect(gildedRose[i].sellIn).toBe(expectedSellIn[i]);
         }
     });
 });
