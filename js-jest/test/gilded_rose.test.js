@@ -99,9 +99,9 @@ describe("Normal Items", function() {
 
     it("Once the sell by date has passed, Quality degrades twice as fast", function() {
         const gildedRose = new Shop(items);
-        const expectedQuality = [14, 0];
+        const expectedQuality = [6, 0];
 
-        for (let day = 0; day < 6; day++) {
+        for (let day = 0; day < 12; day++) {
             gildedRose.updateQuality();
         }
         
