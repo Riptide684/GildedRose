@@ -74,23 +74,23 @@ describe("Backstage Passes", function() {
   });
 });
 
-// describe("Conjured", function() {
-  // it("Conjured degrades at 2 per day before expiry", function() {
-  //   const gildedRose = new Shop([new Item("Conjured Mana Cake", 3, 10)]);
-  //   const days = 2;
-  //   for (i=0; i<days; i++) {gildedRose.updateShop();}
-  //   const items = gildedRose.items;
-  //   expect(items[0].quality).toBe(6);
-  // });
+describe("Conjured", function() {
+  it("Conjured degrades at 2 per day before expiry", function() {
+    const gildedRose = new Shop([new Item("Conjured Mana Cake", 3, 10)]);
+    const days = 2;
+    for (i=0; i<days; i++) {gildedRose.updateShop();}
+    const items = gildedRose.items;
+    expect(items[0].quality).toBe(6);
+  });
 
-  // it("Conjured degrades at 4 per day after expiry", function() {
-  //   const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 10)]);
-  //   const days = 2;
-  //   for (i=0; i<days; i++) {gildedRose.updateShop();}
-  //   const items = gildedRose.items;
-  //   expect(items[0].quality).toBe(2);
-  // });
-// });
+  it("Conjured degrades at 4 per day after expiry", function() {
+    const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 10)]);
+    const days = 2;
+    for (i=0; i<days; i++) {gildedRose.updateShop();}
+    const items = gildedRose.items;
+    expect(items[0].quality).toBe(2);
+  });
+});
 
 // Aya's Tests
 describe("Normal Items", function() {
@@ -108,6 +108,7 @@ describe("Normal Items", function() {
         }
         
         expect(gildedRose.items[0].quality).toBe(6);
+
     });
 });
 
